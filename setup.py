@@ -4,7 +4,7 @@ packages = [package for package in find_namespace_packages(where='./src', includ
 
 setup(
     name='pyrobot',
-    version='1.0.0',
+    version='1.0.1',
     author='Piotr',
     # author_email='you@yourdomain.com',
     description='Python package for develop manipulator kinematics',
@@ -15,7 +15,7 @@ setup(
     },
     include_package_data=True,
     install_requires=(
-        'numpy','matplotlib'
+        'numpy','matplotlib','sympy'
     ),
     classifiers=[
         'Development Status :: 1 - Alpha',

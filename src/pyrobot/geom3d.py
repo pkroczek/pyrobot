@@ -28,7 +28,7 @@ class Point():
     z :float = 0
 
     def __str__(self) -> str:
-        return f'[x:{self.x :.4f},y:{self.y :.4f},z:{self.z :.4f}]'
+        return f'[x:{self.x :.4f}, y:{self.y :.4f}, z:{self.z :.4f}]'
 
     def __repr__(self) -> str:
         return self.__str__()
@@ -48,7 +48,7 @@ class Line():
     p0 : Point = Point()
 
     def __str__(self) -> str:
-        return f'[a:{self.a :.4f},b:{self.b :.4f},c:{self.c :.4f},p0: [{self.p0}]]'
+        return f'[a:{self.a :.4f}, b:{self.b :.4f}, c:{self.c :.4f}, p0: {self.p0}]'
 
     def __repr__(self) -> str:
         return self.__str__()
@@ -72,7 +72,7 @@ class Sphere():
     r :float = 0
 
     def __str__(self) -> str:
-        return f'[x:{self.x :.4f},y:{self.y :.4f},z:{self.z :.4f},r:{self.r :.4f}]'
+        return f'[x:{self.x :.4f}, y:{self.y :.4f}, z:{self.z :.4f}, r:{self.r :.4f}]'
 
     def __repr__(self) -> str:
         return self.__str__()
@@ -222,6 +222,20 @@ class TransformMatrix():
         C = self.C * other.C
         return TransformMatrix(C=C)
 
+    def show(self):
+        xv = self.get_rot().get_versor(axis='x')
+        yv = self.get_rot().get_versor(axis='y')
+        zv = self.get_rot().get_versor(axis='z')
+        pos = self.get_trans()
+        print('')
+        print(f'POSITION:')
+        print(f'\tpos = {pos}')
+        print('ORIENTATION:')
+        print(f'\tx_versor = {xv}')
+        print(f'\ty_versor = {yv}')
+        print(f'\tz_versor = {zv}')
+        print('')
+
     def rot(self,angle:float=0,by:str='local z',deg=False):
         rot = RotMatrix(th=angle,axis=by[-1],deg=deg)
         R = TransformMatrix(rotation=rot)
@@ -359,13 +373,3 @@ def angle(A :Vector, B :Vector):
     v1 = np.array(A/np.linalg.norm(A))
     v2 = np.array(B/np.linalg.norm(B))
     return np.arccos(np.dot(v1,v2))
-
-if __name__ == "__main__":
-    W = RotMatrix(th=1)
-    E = EulerAngle(90,25,-90,True)
-    print(E)
-    R = E.to_rot_matrix()
-    print(R)
-
-    E1 = R.to_zyz()
-    print(E1)
