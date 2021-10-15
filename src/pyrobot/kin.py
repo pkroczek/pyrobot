@@ -1,7 +1,6 @@
 import numpy as np
-from loadman_kin import FACTOR_RAD_2_DEG
-from pyrobot.geom3d import RotMatrix, Vector, TransformMatrix
-from pyrobot import plot
+from pyrobot.geom3d import RotMatrix, Vector, TransformMatrix, FACTOR_RAD_2_DEG
+import pyrobot.plot as plot
 
 def dh(rotZ:float=0,transZ:float=0,transX:float=0,rotX:float=0,param=None):
     '''

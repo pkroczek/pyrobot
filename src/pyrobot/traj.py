@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 import numpy as np
 # from pyrobot.geom3d import RotMatrix, Vector, TransformMatrix, EulerAngle
-from geom3d import RotMatrix, Vector, TransformMatrix, EulerAngle
-import geom3d
+from .geom3d import RotMatrix, Vector, TransformMatrix, EulerAngle, dist
 
 
 @dataclass
@@ -202,7 +201,7 @@ class Trajectory():
             # przypisanie punktu docelowego
             P1 = sp
             # obliczenie odległości do pokonania w przestrzeni kartezjańskiej
-            dist3d = geom3d.dist(P0[0],P1[0])
+            dist3d = dist(P0[0],P1[0])
             # wyznaczenie czasu ruchu 
             t, ta, tv, td = sp[2].get_time(dist3d)
             # wygenerowanie poszczególnych wektorów zmiany parametrów
@@ -228,7 +227,7 @@ class Trajectory():
         P0 = self.start_point[0]
         for sp in self.stop_points:
             P1 = sp[0]
-            s = geom3d.dist(P0,P1)
+            s = dist(P0,P1)
             t = sp[2].get_time(s)
             T += t[0]
             P0 = P1
