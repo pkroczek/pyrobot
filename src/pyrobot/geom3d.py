@@ -373,3 +373,9 @@ def angle(A :Vector, B :Vector):
     v1 = np.array(A/np.linalg.norm(A))
     v2 = np.array(B/np.linalg.norm(B))
     return np.arccos(np.dot(v1,v2))
+
+def deg2rad(joints):
+    return [j*FACTOR_DEG_2_RAD for j in joints]
+
+def rad2deg(joints):
+    return [j*FACTOR_RAD_2_DEG for j in joints]

@@ -15,6 +15,7 @@ class Point():
     z :sym.Symbol=0
 
     def __str__(self) -> str:
+        # return f'\nx:{self.x}\ny:{self.y}\nz:{self.z}'
         return f'[x:{self.x}, y:{self.y}, z:{self.z}]'
 
     def __repr__(self) -> str:
